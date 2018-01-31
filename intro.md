@@ -96,7 +96,7 @@ Can you see how the program works at this point? The first two lines give two me
 
 Here is the same program in CoffeeScript:
 
-```coffee
+```
 total = 0
 count = 1
 while count <= 10
@@ -111,7 +111,7 @@ At the end of the program, after the while construct has finished, the `console.
 
 Finally, here is what the program could look like if we happened to have the convenient operation `sum` available, which computes the sum of a collection of numbers:
 
-```coffee
+```
 console.log sum [1..10]
 ```
 
@@ -138,11 +138,9 @@ Unlike JavaScript, you can't just add CoffeeScript to a web page and expect it t
 
 Code is the text that makes up programs. Most chapters in this book contain quite a lot of it. In my experience, reading code and writing code are indispensable parts of learning to program, so try to not just glance over the examples. Read them attentively and understand them. This may be slow and confusing at first, but I promise that you will quickly get the hang of it. The same goes for the exercises. Don’t assume you understand them until you’ve actually written a working solution.
 
-I recommend you try your solutions to exercises in an actual JavaScript interpreter. That way, you’ll get immediate feedback on whether what you are doing is working, and, I hope, you’ll be tempted to experiment and go beyond the exercises.
+I recommend you try your solutions to exercises in an actual CoffeeScript interpreter. You can edit the examples on this webpage, or write code in Framer. That way, you’ll get immediate feedback on whether what you are doing is working, and, I hope, you’ll be tempted to experiment and go beyond the exercises.
 
 When reading this book in your browser, you can edit (and run) all example programs by clicking them.
-
-If you want to run the programs defined in this book outside of the book’s sandbox, some care is required. Many examples stand on their own and should work in any JavaScript environment. But code in later chapters is mostly written for a specific environment (the browser or Node.js) and can run only there. In addition, many chapters define bigger programs, and the pieces of code that appear in them depend on each other or on external files. The sandbox on the website provides links to Zip files containing all of the scripts and data files necessary to run the code for a given chapter.
 
 ## Typographic conventions
 In this book, text written in a monospaced font will represent elements of programs—sometimes they are self-sufficient fragments, and sometimes they just refer to part of a nearby program.
@@ -151,13 +149,13 @@ I've added a function `print` to the global namespace, which logs the output to 
 
 Programs (of which you have already seen a few), are written as follows:
 
-```coffee
+```
 factorial = (n) ->
   if n == 0 then 1 else factorial(n - 1) * n
 ```
 Sometimes, in order to show the output that a program produces, the expected output is written after it, with two slashes and an arrow in front.
 
-```coffee
+```
 print(factorial(8))
 # → 40320
 ```

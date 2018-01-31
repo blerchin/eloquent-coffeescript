@@ -13,22 +13,34 @@ examples.forEach(function(el) {
   run.className = 'run-example';
   run.textContent = 'Run Example'
   el.parentNode.appendChild(run);
-  run.addEventListener('click', runExample.bind(null, el));
 
   var clear = document.createElement('button');
   clear.className = 'clear-console';
   clear.textContent = 'Clear Console';
   el.parentNode.appendChild(clear);
-  clear.addEventListener('click', clearConsole.bind(null, el));
 
-  hideHint(el);
+  var consoleBox = document.createElement('code');
+  consoleBox.className = "console";
+  el.parentNode.appendChild(consoleBox);
 
-  el.addEventListener('blur', function(){
-    hljs.highlightBlock(el);
+  hideHint(el, consoleBox);
+
+  var cm = CodeMirror(function(cm) {
+    el.parentNode.replaceChild(cm, el);
+  }, {
+    mode: 'coffeescript',
+    lineNumbers: true,
+    smartIndent: true,
+    tabSize: 2,
+    indentWithTabs: true,
+    value: el.textContent
   });
+
+  run.addEventListener('click', runExample.bind(null, cm, consoleBox));
+  clear.addEventListener('click', clearConsole.bind(null, consoleBox));
 });
 
-function hideHint(el) {
+function hideHint(el, consoleBox) {
   var code = el.textContent;
   var blockComment = /#{3}hint([\s\S]*?)#{3}/;
   var hint = code.match(blockComment);
@@ -36,25 +48,22 @@ function hideHint(el) {
     el.textContent = code.replace(blockComment, '');
     el.dataset.hint = hint[1];
 
-    var hint = document.createElement('button');
-    hint.className = 'show-hint';
-    hint.textContent = 'Show Hint';
-    el.parentNode.appendChild(hint);
-    hint.addEventListener('click', showHint.bind(null, el));
+    var hintButton = document.createElement('button');
+    hintButton.className = 'show-hint';
+    hintButton.textContent = 'Show Hint';
+    el.parentNode.appendChild(hintButton);
+    hintButton.addEventListener('click', showHint.bind(null, hint[1], consoleBox));
   }
 }
 
-function showHint(el) {
-  var hintWrap = document.createElement('div');
-  hintWrap.className = 'result hint';
-  hintWrap.textContent = el.dataset.hint;
-  el.parentNode.appendChild(hintWrap);
-
+function showHint(hint, consoleBox) {
+  consoleBox.textContent = '\n' + hint;
 }
 
-function runExample(el) {
+function runExample(cm, consoleBox) {
+  clearConsole(consoleBox);
   buf = "";
-  var code = el.textContent;
+  var code = cm.getValue();
   try {
     CoffeeScript.eval(code);
   } catch (e) {
@@ -62,20 +71,10 @@ function runExample(el) {
     buf = e.name + ': ' + e.message;
   }
   if (buf.length) {
-    console.log(buf);
-    var result = document.createElement('pre');
-    result.className = "result highlight";
-    var resultCode = document.createElement('code');
-    result.appendChild(resultCode);
-    el.parentNode.appendChild(result);
-    resultCode.textContent = buf;
+    consoleBox.textContent += buf;
   }
 }
 
-function clearConsole(el) {
-  var results = el.parentNode.querySelectorAll('.result');
-  results.forEach(function(i) {
-    el.parentNode.removeChild(i);
-  });
-
+function clearConsole(consoleBox) {
+  consoleBox.textContent = '';
 }
