@@ -2,7 +2,7 @@
 
 This is a book about getting computers to do what you want them to do. Computers are about as common as screwdrivers today, but they contain a lot more hidden complexity and thus are harder to operate and understand. To many, they remain alien, slightly threatening things.
 
-![Computers](img/computers.png)
+![Computers](img/computer.png)
 
 We’ve found two effective ways of bridging the communication gap between us, squishy biological organisms with a talent for social and spatial reasoning, and computers, unfeeling manipulators of meaningless data. The first is to appeal to our sense of the physical world and build interfaces that mimic that world and allow us to manipulate shapes on a screen with our fingers. This works very well for casual machine interaction.
 
@@ -163,3 +163,5 @@ print(factorial(8))
 ```
 
 Good luck!
+
+[Continue to Chapter 1](ch01.md)
