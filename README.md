@@ -1,6 +1,6 @@
 # Eloquent CoffeeScript
-
-### Shamelessly adapted from _Eloquent Javascript_ by Marijn Haverbeke.
+### Shamelessly cribbed from _Eloquent Javascript_ by Marijn Haverbeke.
+### adapted by [Ben Lerchin](https://github.com/blerchin)
 Licensed under a [Creative Commons attribution-noncommercial license](http://creativecommons.org/licenses/by-nc/3.0/). All code in this book may also be considered licensed under an [MIT license](http://opensource.org/licenses/MIT).
 
 ![Cover of Eloquent Javascript, but with CoffeeScript](img/cover.png)
