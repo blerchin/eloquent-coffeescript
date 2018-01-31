@@ -29,7 +29,7 @@ examples.forEach(function(el) {
     el.parentNode.replaceChild(cm, el);
   }, {
     mode: 'coffeescript',
-    lineNumbers: true,
+    lineNumbers: false,
     smartIndent: true,
     tabSize: 2,
     indentWithTabs: true,
